@@ -1,11 +1,13 @@
+import 'package:antarmitra/routes/route_name.dart';
+import 'package:antarmitra/screens/prayatnascreen.dart';
 import 'package:flutter/material.dart';
 
 class CustomRoute {
   static Route<dynamic> allRoutes(RouteSettings settings) {
     return MaterialPageRoute(builder: (context) {
       switch (settings.name) {
-        // case RouteName.splash:
-        //   return const SplashScreen();
+        case RouteName.prayatna:
+          return const prayatnaCode();
         // case RouteName.onboarding:
         //   return const OnBoarding();
         // case RouteName.signUp:
