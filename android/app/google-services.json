@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "344974460254",
+    "project_id": "antarmitra-10e59",
+    "storage_bucket": "antarmitra-10e59.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:344974460254:android:0338d217f580e02095bbcf",
+        "android_client_info": {
+          "package_name": "com.example.antarmitra"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD8gYmtu3kPHGir5ZpwOHBfuqf4DNL1UMc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
