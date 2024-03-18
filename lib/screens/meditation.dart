@@ -9,7 +9,7 @@ class Meditation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: buildAppBar(text: 'Ishika\'s Space', actions: <Widget>[
+      appBar: buildAppBar(text: 'Ishsika\'s Space', actions: <Widget>[
         Row(
           children: [
             const Text(
