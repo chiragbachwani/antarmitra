@@ -4,6 +4,7 @@ import 'package:antarmitra/screens/exercise.dart';
 import 'package:antarmitra/screens/meditation.dart';
 import 'package:antarmitra/screens/profile.dart';
 import 'package:antarmitra/utils/app_color.dart';
+import 'package:antarmitra/widgets/mediationDialog.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
@@ -20,7 +21,7 @@ class NavBar extends StatelessWidget {
       return [
         const Home(),
         const Community(),
-        const Meditation(),
+        const DialogMeditation(),
         const Exercise(),
         const Profile()
       ];
@@ -33,24 +34,18 @@ class NavBar extends StatelessWidget {
           inactiveColorPrimary: AppColor.fifth,
           activeColorPrimary: AppColor.sixth,
           title: ("Home"),
-          // activeColorPrimary: CupertinoColors.activeBlue,
-          // inactiveColorPrimary: CupertinoColors.systemGrey,
         ),
         PersistentBottomNavBarItem(
           icon: const Icon(Icons.people),
           title: ("Community"),
           inactiveColorPrimary: AppColor.fifth,
           activeColorPrimary: AppColor.sixth,
-          // activeColorPrimary: CupertinoColors.activeBlue,
-          // inactiveColorPrimary: CupertinoColors.systemGrey,
         ),
         PersistentBottomNavBarItem(
           icon: const Icon(Icons.video_call),
           title: ("Meditation"),
           inactiveColorPrimary: AppColor.fifth,
           activeColorPrimary: AppColor.sixth,
-          // activeColorPrimary: CupertinoColors.activeBlue,
-          // inactiveColorPrimary: CupertinoColors.systemGrey,
         ),
         PersistentBottomNavBarItem(
           icon: const Icon(Icons.sports_gymnastics),

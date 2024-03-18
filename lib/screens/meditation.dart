@@ -5,7 +5,8 @@ import 'package:antarmitra/widgets/timer.dart';
 import 'package:flutter/material.dart';
 
 class Meditation extends StatefulWidget {
-  const Meditation({super.key});
+  final Widget timerWidget;
+  const Meditation({super.key, required this.timerWidget});
 
   @override
   State<Meditation> createState() => _MeditationState();
@@ -34,66 +35,46 @@ class _MeditationState extends State<Meditation> {
     });
   }
 
-  void _showSessionCompleteDialog() {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text("Session Completed"),
-          content: const Text("Your meditation session has been completed."),
-          actions: <Widget>[
-            TextButton(
-              child: const Text("OK"),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-        );
-      },
-    );
-  }
+  // void _showDurationDialog() async {
+  //   Duration? selectedDuration = await showDialog<Duration>(
+  //     context: context,
+  //     builder: (BuildContext context) {
+  //       return SimpleDialog(
+  //         title: const Text('Select Timer Duration'),
+  //         children: <Widget>[
+  //           SimpleDialogOption(
+  //             onPressed: () {
+  //               Navigator.of(context).pop();
+  //               TimerWidget(
+  //                 duration: const Duration(minutes: 5),
+  //                 onFinish: _showSessionCompleteDialog,
+  //               );
+  //             },
+  //             child: const Text('1 minute'),
+  //           ),
+  //           SimpleDialogOption(
+  //             onPressed: () {
+  //               Navigator.pop(context, const Duration(minutes: 3));
+  //             },
+  //             child: const Text('3 minutes'),
+  //           ),
+  //           SimpleDialogOption(
+  //             onPressed: () {
+  //               Navigator.pop(context, const Duration(minutes: 5));
+  //             },
+  //             child: const Text('5 minutes'),
+  //           ),
+  //         ],
+  //       );
+  //     },
+  //   );
 
-  void _showDurationDialog() async {
-    Duration? selectedDuration = await showDialog<Duration>(
-      context: context,
-      builder: (BuildContext context) {
-        return SimpleDialog(
-          title: const Text('Select Timer Duration'),
-          children: <Widget>[
-            SimpleDialogOption(
-              onPressed: () {
-                Navigator.of(context).pop();
-                TimerWidget(
-                  duration: const Duration(minutes: 5),
-                  onFinish: _showSessionCompleteDialog,
-                );
-              },
-              child: const Text('1 minute'),
-            ),
-            SimpleDialogOption(
-              onPressed: () {
-                Navigator.pop(context, const Duration(minutes: 3));
-              },
-              child: const Text('3 minutes'),
-            ),
-            SimpleDialogOption(
-              onPressed: () {
-                Navigator.pop(context, const Duration(minutes: 5));
-              },
-              child: const Text('5 minutes'),
-            ),
-          ],
-        );
-      },
-    );
-
-    if (selectedDuration != null) {
-      setState(() {
-        _selectedDuration = selectedDuration;
-      });
-    }
-  }
+  //   if (selectedDuration != null) {
+  //     setState(() {
+  //       _selectedDuration = selectedDuration;
+  //     });
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -123,10 +104,6 @@ class _MeditationState extends State<Meditation> {
           color: Colors.white,
           child: Column(
             children: [
-              ElevatedButton(
-                onPressed: !_isTimerRunning ? _showDurationDialog : null,
-                child: const Text('Select Timer Duration'),
-              ),
               const SizedBox(height: 20),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -137,12 +114,7 @@ class _MeditationState extends State<Meditation> {
                   ),
                   Column(
                     children: [
-                      _isTimerRunning
-                          ? TimerWidget(
-                              duration: const Duration(minutes: 1),
-                              onFinish: _showSessionCompleteDialog,
-                            )
-                          : const SizedBox(),
+                      _isTimerRunning ? widget.timerWidget : const SizedBox(),
                       ElevatedButton(
                         onPressed: !_isTimerRunning ? _startTimer : _stopTimer,
                         child: _isTimerRunning
