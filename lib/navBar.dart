@@ -8,7 +8,9 @@ import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
 class NavBar extends StatelessWidget {
-  const NavBar({super.key});
+  const NavBar({super.key,  required this.apiCode});
+
+ final String apiCode;
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +20,7 @@ class NavBar extends StatelessWidget {
 
     List<Widget> buildScreens() {
       return [
-        const Home(),
+        Home(),
         const Community(),
         const Meditation(),
         const Exercise(),
