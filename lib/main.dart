@@ -1,11 +1,12 @@
 import 'package:antarmitra/api/apiservices.dart';
 import 'package:antarmitra/navBar.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 String apiCode = '';
 void main() {
   runApp(const MyApp());
-  fetchApiCode(apiCode);
+  fetchApiCode();
 }
 
 class MyApp extends StatelessWidget {
@@ -15,15 +16,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     String apicode = apiCode;
-    return MaterialApp(
-        title: 'Flutter Demo',
+    return GetMaterialApp(
+        title: 'Anatrmitra',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home:  NavBar(
-          apiCode: apicode,
-        ));
+        home: NavBar());
   }
 }
