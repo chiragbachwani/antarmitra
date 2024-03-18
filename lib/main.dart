@@ -1,5 +1,6 @@
 import 'package:antarmitra/api/apiservices.dart';
 import 'package:antarmitra/navBar.dart';
+import 'package:antarmitra/utils/app_color.dart';
 import 'package:flutter/material.dart';
 
 String apiCode = '';
@@ -19,10 +20,10 @@ class MyApp extends StatelessWidget {
         title: 'Flutter Demo',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          colorScheme: ColorScheme.fromSeed(seedColor: AppColor.first),
           useMaterial3: true,
         ),
-        home:  NavBar(
+        home: NavBar(
           apiCode: apicode,
         ));
   }
