@@ -1,3 +1,4 @@
+import 'package:antarmitra/screens/onboarding.dart';
 import 'package:antarmitra/screens/profile.dart';
 import 'package:antarmitra/screens/sign_in.dart';
 import 'package:antarmitra/utils/app_constants.dart';
@@ -37,6 +38,7 @@ class Profile extends StatelessWidget {
                   context,
                   msg: "Logged out successfully",
                 );
+                Get.to(SignInScreen());
                 // Navigator.of(context)
                 //     .pushReplacement(MaterialPageRoute(builder: (context) {
                 //   return SignInScreen();

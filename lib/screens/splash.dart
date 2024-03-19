@@ -24,7 +24,7 @@ class _SplashScreenState extends State<SplashScreen> {
     await Future.delayed(const Duration(seconds: 3));
 
     auth.authStateChanges().listen((User? user) {
-      if (user == null && !onboardingCompleted && mounted) {
+      if (user == null) {
         Get.to(const OnBoarding());
       } else {
         Get.to(() => const NavBar());
