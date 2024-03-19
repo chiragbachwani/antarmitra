@@ -1,3 +1,4 @@
+import 'package:antarmitra/screens/onboarding.dart';
 import 'package:antarmitra/screens/profile.dart';
 import 'package:antarmitra/screens/sign_in.dart';
 import 'package:antarmitra/utils/app_constants.dart';
@@ -15,7 +16,7 @@ class Profile extends StatelessWidget {
       appBar: AppBar(
         // automaticallyImplyLeading: widget.isShowed,
         leading: IconButton(
-          icon: Icon(
+          icon: const Icon(
             Icons.arrow_back_ios_new_outlined,
             color: Vx.gray700,
           ),
@@ -24,7 +25,7 @@ class Profile extends StatelessWidget {
           },
         ),
         backgroundColor: Colors.white,
-        title: Text(
+        title: const Text(
           'Account',
           style: TextStyle(color: Vx.gray600),
         ),
@@ -47,7 +48,7 @@ class Profile extends StatelessWidget {
         ],
       ),
       body: SingleChildScrollView(
-        physics: BouncingScrollPhysics(),
+        physics: const BouncingScrollPhysics(),
         child: Center(
           child: SingleChildScrollView(
             child: Column(
@@ -93,7 +94,7 @@ class Profile extends StatelessWidget {
                           //   VxToast.show(context, msg: "Profile Updated");
                           // });
                         },
-                        icon: Icon(
+                        icon: const Icon(
                           Icons.photo_size_select_actual_rounded,
                           color: Vx.gray600,
                         )),
@@ -113,7 +114,7 @@ class Profile extends StatelessWidget {
                           //   VxToast.show(context, msg: "Profile Updated");
                           // });
                         },
-                        icon: Icon(
+                        icon: const Icon(
                           Icons.camera,
                           color: Vx.gray600,
                         ))
@@ -135,7 +136,7 @@ class Profile extends StatelessWidget {
                 //     : "${data['Email']}".text.gray800.size(16).make(),
                 " Email@gmail.com".text.gray800.size(16).make(),
                 10.heightBox,
-                Divider(
+                const Divider(
                   thickness: 6,
                 ),
                 Visibility(
@@ -149,7 +150,7 @@ class Profile extends StatelessWidget {
                       height: 30,
                       width: 30,
                     ),
-                    title: Text(
+                    title: const Text(
                       ' 32 Points',
                       style: TextStyle(
                           color: Vx.gray600,
@@ -158,7 +159,7 @@ class Profile extends StatelessWidget {
                     ),
                   ),
                 ),
-                Divider(
+                const Divider(
                   thickness: 1,
                 ),
                 ListTile(
@@ -169,7 +170,7 @@ class Profile extends StatelessWidget {
                     //       context: context, email: googleEmail);
                     // });
                   },
-                  trailing: Icon(Icons.arrow_forward_ios_outlined),
+                  trailing: const Icon(Icons.arrow_forward_ios_outlined),
                   title: const Text(
                     'Link your Google Account',
                     style: TextStyle(
@@ -178,7 +179,7 @@ class Profile extends StatelessWidget {
                         fontWeight: FontWeight.w500),
                   ),
                 ),
-                Divider(
+                const Divider(
                   thickness: 1,
                 ),
                 ListTile(
@@ -187,7 +188,7 @@ class Profile extends StatelessWidget {
                     // Get.to(() => LinkMobileScreen(),
                     //     transition: Transition.rightToLeft);
                   },
-                  trailing: Icon(Icons.arrow_forward_ios_outlined),
+                  trailing: const Icon(Icons.arrow_forward_ios_outlined),
                   title: const Text(
                     'Link your Phone Number',
                     style: TextStyle(
@@ -196,7 +197,7 @@ class Profile extends StatelessWidget {
                         fontWeight: FontWeight.w500),
                   ),
                 ),
-                Divider(
+                const Divider(
                   thickness: 1,
                 ),
                 ListTile(
@@ -205,7 +206,7 @@ class Profile extends StatelessWidget {
                     // Get.to(() => LinkEmailScreen(),
                     //     transition: Transition.rightToLeft);
                   },
-                  trailing: Icon(Icons.arrow_forward_ios_outlined),
+                  trailing: const Icon(Icons.arrow_forward_ios_outlined),
                   title: const Text(
                     'Link your Username and password',
                     style: TextStyle(
@@ -214,7 +215,7 @@ class Profile extends StatelessWidget {
                         fontWeight: FontWeight.w500),
                   ),
                 ),
-                Divider(
+                const Divider(
                   thickness: 1,
                 ),
                 // Column(

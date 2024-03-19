@@ -2,6 +2,7 @@ import 'package:antarmitra/routes/route_name.dart';
 import 'package:antarmitra/screens/profile.dart';
 import 'package:antarmitra/screens/sign_in.dart';
 import 'package:antarmitra/screens/sign_up.dart';
+import 'package:antarmitra/screens/tempsignin.dart';
 import 'package:antarmitra/utils/app_color.dart';
 import 'package:antarmitra/utils/app_constants.dart';
 import 'package:flutter/cupertino.dart';
@@ -72,7 +73,7 @@ class OnBoarding extends StatelessWidget {
           SharedPreferences prefs = await SharedPreferences.getInstance();
           prefs.setBool('onboardingCompleted', true);
           // Navigator.of(context).pushNamed(RouteName.signUp);
-          Get.to(() => const SignInScreen());
+          Get.to(() => const TempPage());
         },
 
         totalPage: 3,
