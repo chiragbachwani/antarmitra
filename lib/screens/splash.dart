@@ -7,6 +7,7 @@ import 'package:antarmitra/utils/app_constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -16,17 +17,18 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  gotoNextScreen() {
-    Future.delayed(const Duration(seconds: 3), () {
-      // Get.to(() => const LoginScren());
+  Future<void> gotoNextScreen() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    bool onboardingCompleted = prefs.getBool('onboardingCompleted') ?? false;
 
-      auth.authStateChanges().listen((User? user) {
-        if (user == null && mounted) {
-          Get.to(const OnBoarding());
-        } else {
-          Get.to(() => NavBar());
-        }
-      });
+    await Future.delayed(const Duration(seconds: 3));
+
+    auth.authStateChanges().listen((User? user) {
+      if (user == null && !onboardingCompleted && mounted) {
+        Get.to(const OnBoarding());
+      } else {
+        Get.to(() => const NavBar());
+      }
     });
   }
 
