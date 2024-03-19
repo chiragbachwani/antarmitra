@@ -11,6 +11,7 @@ import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 // import 'package:flutter_onboarding_slider/flutter_onboarding_slider.dart';
 import 'package:flutter_onboarding_slider/flutter_onboarding_slider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 // import 'package:onboarding/onboarding.dart';
 
 class OnBoarding extends StatelessWidget {
@@ -21,7 +22,7 @@ class OnBoarding extends StatelessWidget {
     return Scaffold(
       body: OnBoardingSlider(
         headerBackgroundColor: Colors.white,
-        finishButtonText: 'Register',
+        finishButtonText: 'Login',
         finishButtonStyle: const FinishButtonStyle(
             highlightElevation: 20,
             elevation: 5,
@@ -67,9 +68,11 @@ class OnBoarding extends StatelessWidget {
         indicatorPosition: 90,
 
         leading: Image.asset(ImagePath.appLogo),
-        onFinish: () {
+        onFinish: () async {
+          SharedPreferences prefs = await SharedPreferences.getInstance();
+          prefs.setBool('onboardingCompleted', true);
           // Navigator.of(context).pushNamed(RouteName.signUp);
-          Get.to(() => SignInScreen());
+          Get.to(() => const SignInScreen());
         },
 
         totalPage: 3,
