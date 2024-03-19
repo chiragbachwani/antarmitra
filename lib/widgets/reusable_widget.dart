@@ -1,3 +1,4 @@
+import 'package:antarmitra/utils/app_color.dart';
 import 'package:flutter/material.dart';
 
 Image logoWidget(String imageName) {
@@ -53,16 +54,16 @@ Container firebaseUIButton(BuildContext context, String title, Function onTap) {
       style: ButtonStyle(
           backgroundColor: MaterialStateProperty.resolveWith((states) {
             if (states.contains(MaterialState.pressed)) {
-              return Colors.black26;
+              return AppColor.sixth;
             }
-            return const Color.fromARGB(255, 255, 95, 146);
+            return AppColor.first;
           }),
           shape: MaterialStateProperty.all<RoundedRectangleBorder>(
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)))),
       child: Text(
         title,
         style: const TextStyle(
-            color: Colors.black87, fontWeight: FontWeight.bold, fontSize: 16),
+            color: Colors.white, fontWeight: FontWeight.bold, fontSize: 16),
       ),
     ),
   );
