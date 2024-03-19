@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:antarmitra/controller/usercontroller.dart';
 import 'package:antarmitra/screens/chat_screen.dart';
 import 'package:antarmitra/screens/profile.dart';
 import 'package:antarmitra/widgets/appBar.dart';
@@ -11,8 +12,9 @@ class Community extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var userController = Get.find<UserController>();
     return Scaffold(
-      appBar: buildAppBar(text: "Community page"),
+      appBar: buildAppBar(text: userController.userName.value.split(' ').first),
       body: MessagesList(),
     );
   }
@@ -32,6 +34,8 @@ class MessagesList extends StatelessWidget {
     ),
     // Add more messages as needed
   ];
+
+  MessagesList({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +62,7 @@ class Message {
 class MessageTile extends StatelessWidget {
   final Message message;
 
-  MessageTile({required this.message});
+  const MessageTile({super.key, required this.message});
 
   @override
   Widget build(BuildContext context) {
@@ -70,16 +74,16 @@ class MessageTile extends StatelessWidget {
       ),
       title: Text(
         message.senderName,
-        style: TextStyle(fontWeight: FontWeight.bold),
+        style: const TextStyle(fontWeight: FontWeight.bold),
       ),
       subtitle: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(message.content),
-          SizedBox(height: 4),
+          const SizedBox(height: 4),
           Text(
             message.timestamp,
-            style: TextStyle(color: Colors.grey),
+            style: const TextStyle(color: Colors.grey),
           ),
         ],
       ),

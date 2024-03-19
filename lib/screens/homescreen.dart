@@ -1,4 +1,5 @@
 import 'package:antarmitra/controller/homecontroller.dart';
+import 'package:antarmitra/controller/usercontroller.dart';
 import 'package:antarmitra/routes/route_name.dart';
 import 'package:antarmitra/screens/community.dart';
 import 'package:antarmitra/screens/prayatnascreen.dart';
@@ -36,9 +37,10 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // var controller = Get.find<homeController>();
+    var userController = Get.find<UserController>();
     return Scaffold(
-        appBar: buildAppBar(text: 'Ishika\'s Space'),
+        appBar:
+            buildAppBar(text: userController.userName.value.split(' ').first),
         body: SingleChildScrollView(
           child: Column(
             children: [
@@ -51,7 +53,7 @@ class Home extends StatelessWidget {
                       // ignore: avoid_unnecessary_containers
                       Container(
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(25),
+                            borderRadius: BorderRadius.circular(10),
                             color: AppColor.fifth,
                           ),
                           // color: AppColor.fifth,
@@ -61,7 +63,9 @@ class Home extends StatelessWidget {
                               const Align(
                                 alignment: Alignment.centerLeft,
                                 child: Text('Daily Meditation Streak',
-                                    style: TextStyle(fontSize: 20)),
+                                    style: TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold)),
                               ),
                               const SizedBox(height: 30),
                               Row(
@@ -82,11 +86,13 @@ class Home extends StatelessWidget {
                               ),
                             ],
                           )),
-                      const SizedBox(height: 20),
+                      const SizedBox(height: 10),
+                      const Divider(thickness: 1),
+                      const SizedBox(height: 10),
                       Container(
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(25),
-                            color: AppColor.second,
+                            borderRadius: BorderRadius.circular(10),
+                            color: AppColor.first,
                           ),
                           // color: AppColor.fifth,
                           padding: const EdgeInsets.all(20),
@@ -95,15 +101,18 @@ class Home extends StatelessWidget {
                             children: [
                               const Align(
                                 alignment: Alignment.centerLeft,
-                                child: Text('Thearpists Available',
-                                    style: TextStyle(fontSize: 20)),
+                                child: Text('Therapists Available',
+                                    style: TextStyle(
+                                        fontSize: 20,
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold)),
                               ),
                               const SizedBox(height: 30),
                               Container(
                                 height: 100,
                                 decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(20),
-                                  color: AppColor.fifth,
+                                  borderRadius: BorderRadius.circular(10),
+                                  color: AppColor.fifth.withOpacity(0.3),
                                 ),
                                 // width: 200,
                                 child: ListView.builder(
@@ -154,14 +163,11 @@ class Home extends StatelessWidget {
                                     Get.to(() => const Community());
                                   },
                                   child: const Text('View More')),
-                              const SizedBox(
-                                height: 20,
-                              ),
                             ],
                           )),
-                      const SizedBox(
-                        height: 30,
-                      ),
+                      const SizedBox(height: 10),
+                      const Divider(thickness: 1),
+                      const SizedBox(height: 10),
 
                       Container(
                           decoration: BoxDecoration(

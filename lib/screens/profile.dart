@@ -1,3 +1,5 @@
+import 'package:antarmitra/controller/usercontroller.dart';
+import 'package:antarmitra/firebase_const.dart';
 import 'package:antarmitra/screens/onboarding.dart';
 import 'package:antarmitra/screens/profile.dart';
 import 'package:antarmitra/screens/sign_in.dart';
@@ -13,6 +15,11 @@ class Profile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    auth.authStateChanges().listen((user) {
+      currentuser = user;
+    });
+    var controller = Get.put(ProfileController());
+    var userController = Get.find<UserController>();
     return Scaffold(
       appBar: AppBar(
         // automaticallyImplyLeading: widget.isShowed,
@@ -39,7 +46,7 @@ class Profile extends StatelessWidget {
                   context,
                   msg: "Logged out successfully",
                 );
-                Get.to(SignInScreen());
+                Get.to(const SignInScreen());
                 // Navigator.of(context)
                 //     .pushReplacement(MaterialPageRoute(builder: (context) {
                 //   return SignInScreen();
@@ -61,7 +68,7 @@ class Profile extends StatelessWidget {
                 // data['image_url'] == '' &&
                 //         controller.profileImgPath.isEmpty
                 //     ?
-                CircleAvatar(
+                const CircleAvatar(
                   radius: 60,
                   backgroundImage: AssetImage('assets/images/profile.gif'),
                   // backgroundImage: AssetImage("assets/image/profile.gif"),
@@ -83,19 +90,19 @@ class Profile extends StatelessWidget {
                   children: [
                     IconButton(
                         onPressed: () async {
-                          // await controller
-                          //     .selectImagefromGallery(context);
-                          // if (controller
-                          //     .profileImgPath.value.isNotEmpty) {
-                          //   await controller.uplaodProfileImage();
-                          // } else {
-                          //   controller.profileImagelink =
-                          //       data['image_url'];
-                          // }
-                          // controller.storeimage();
-                          // setState(() {
-                          //   VxToast.show(context, msg: "Profile Updated");
-                          // });
+                          await userController
+                              .selectImagefromGallery(context);
+                          if (controller
+                              .profileImgPath.value.isNotEmpty) {
+                            await controller.uplaodProfileImage();
+                          } else {
+                            controller.profileImagelink =
+                                data['image_url'];
+                          }
+                          controller.storeimage();
+                          setState(() {
+                            VxToast.show(context, msg: "Profile Updated");
+                          });
                         },
                         icon: const Icon(
                           Icons.photo_size_select_actual_rounded,
@@ -104,18 +111,18 @@ class Profile extends StatelessWidget {
                     5.widthBox,
                     IconButton(
                         onPressed: () async {
-                          // await controller.selectImagefromCamera(context);
-                          // if (controller
-                          //     .profileImgPath.value.isNotEmpty) {
-                          //   await controller.uplaodProfileImage();
-                          // } else {
-                          //   controller.profileImagelink =
-                          //       data['image_url'];
-                          // }
-                          // controller.storeimage();
-                          // setState(() {
-                          //   VxToast.show(context, msg: "Profile Updated");
-                          // });
+                          await controller.selectImagefromCamera(context);
+                          if (controller
+                              .profileImgPath.value.isNotEmpty) {
+                            await controller.uplaodProfileImage();
+                          } else {
+                            controller.profileImagelink =
+                                data['image_url'];
+                          }
+                          controller.storeimage();
+                          setState(() {
+                            VxToast.show(context, msg: "Profile Updated");
+                          });
                         },
                         icon: const Icon(
                           Icons.camera,
@@ -125,19 +132,32 @@ class Profile extends StatelessWidget {
                 ),
                 // data['Username'] == null
                 // ?
-                " Username Not Set".text.semiBold.gray800.size(18).make()
+                Obx(() {
+                  return userController.userName.value != ''
+                      ? userController.userName.value.text.semiBold.gray800
+                          .size(18)
+                          .make()
+                      : "Name Not Set".text.semiBold.gray800.size(18).make();
+                }),
+                // " Username Not Set".text.semiBold.gray800.size(18).make()
                 // : "${data['Username']}"
                 //     .text
                 //     .semiBold
                 //     .gray800
                 //     .size(18)
                 //     .make(),
-                ,
+
                 10.heightBox,
                 // data['Email'] == null
                 //     ? " Email Not set".text.gray800.size(16).make()
                 //     : "${data['Email']}".text.gray800.size(16).make(),
-                " Email@gmail.com".text.gray800.size(16).make(),
+                Obx(() {
+                  return userController.userEmail.value != ''
+                      ? userController.userEmail.value.text.gray800
+                          .size(16)
+                          .make()
+                      : "email@gmail.com".text.gray800.size(16).make();
+                }),
                 10.heightBox,
                 const Divider(
                   thickness: 6,
@@ -166,7 +186,7 @@ class Profile extends StatelessWidget {
                   thickness: 1,
                 ),
                 ListTile(
-                  leading: Icon(
+                  leading: const Icon(
                     Icons.question_mark_outlined,
                     color: AppColor.sixth,
                   ),
@@ -190,7 +210,7 @@ class Profile extends StatelessWidget {
                   thickness: 1,
                 ),
                 ListTile(
-                  leading: Icon(
+                  leading: const Icon(
                     Icons.question_answer,
                     color: AppColor.sixth,
                   ),
@@ -212,7 +232,7 @@ class Profile extends StatelessWidget {
                   thickness: 1,
                 ),
                 ListTile(
-                  leading: Icon(
+                  leading: const Icon(
                     Icons.people,
                     color: AppColor.sixth,
                   ),

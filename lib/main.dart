@@ -1,5 +1,6 @@
 import 'package:antarmitra/api/apiservices.dart';
 import 'package:antarmitra/controller/user_provider.dart';
+import 'package:antarmitra/controller/usercontroller.dart';
 import 'package:antarmitra/firebase_options.dart';
 import 'package:antarmitra/navBar.dart';
 import 'package:antarmitra/screens/splash.dart';
@@ -35,12 +36,17 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     String apicode = apiCode;
     return GetMaterialApp(
-        title: 'Antarmitra',
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: AppColor.first),
-          useMaterial3: true,
-        ),
-        home: const SplashScreen());
+      title: 'Antarmitra',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        fontFamily: 'Nunito',
+        colorScheme: ColorScheme.fromSeed(seedColor: AppColor.first),
+        useMaterial3: true,
+      ),
+      home: const SplashScreen(),
+      initialBinding: BindingsBuilder(() {
+        Get.put(UserController());
+      }),
+    );
   }
 }

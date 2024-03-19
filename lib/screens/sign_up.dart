@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:antarmitra/controller/usercontroller.dart';
 import 'package:antarmitra/firebase_const.dart';
 import 'package:antarmitra/navBar.dart';
 import 'package:antarmitra/screens/profile.dart';
@@ -38,6 +39,21 @@ storeUserData({name, password, email, type, certificate}) async {
     'certificate': certificate,
   });
 }
+
+// storeUserData(
+//   email: _emailTextController.text,
+//   password: _passwordTextController.text,
+//   name: _userNameTextController.text,
+//   type: _selectedValue == 1 ? 'Therapist' : 'User',
+//   certificate: downloadlink != '' ? downloadlink : '',
+// );
+// Get.find<UserController>().setUserDetails(
+//   name: _userNameTextController.text,
+//   email: _emailTextController.text,
+//   password: _passwordTextController.text,
+//   type: _selectedValue == 1 ? 'Therapist' : 'User',
+//   certificate: downloadlink != '' ? downloadlink : '',
+// );
 
 class SignUpScreenState extends State<SignUpScreen> {
   final TextEditingController _passwordTextController = TextEditingController();
@@ -85,25 +101,25 @@ class SignUpScreenState extends State<SignUpScreen> {
     });
   }
 
-  Future<UserCredential?> _handleSignIn() async {
-    try {
-      final GoogleSignInAccount? googleSignInAccount =
-          await _googleSignIn.signIn();
-      if (googleSignInAccount == null) return null;
+  // Future<UserCredential?> _handleSignIn() async {
+  //   try {
+  //     final GoogleSignInAccount? googleSignInAccount =
+  //         await _googleSignIn.signIn();
+  //     if (googleSignInAccount == null) return null;
 
-      final GoogleSignInAuthentication googleSignInAuthentication =
-          await googleSignInAccount.authentication;
-      final AuthCredential credential = GoogleAuthProvider.credential(
-        accessToken: googleSignInAuthentication.accessToken,
-        idToken: googleSignInAuthentication.idToken,
-      );
+  //     final GoogleSignInAuthentication googleSignInAuthentication =
+  //         await googleSignInAccount.authentication;
+  //     final AuthCredential credential = GoogleAuthProvider.credential(
+  //       accessToken: googleSignInAuthentication.accessToken,
+  //       idToken: googleSignInAuthentication.idToken,
+  //     );
 
-      return await _auth.signInWithCredential(credential);
-    } catch (error) {
-      print("Error signing in with Google: $error");
-      return null;
-    }
-  }
+  //     return await _auth.signInWithCredential(credential);
+  //   } catch (error) {
+  //     print("Error signing in with Google: $error");
+  //     return null;
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -271,6 +287,27 @@ class SignUpScreenState extends State<SignUpScreen> {
                                           ? downloadlink
                                           : ''))
                                   .then((value) {
+                                  storeUserData(
+                                    email: _emailTextController.text,
+                                    password: _passwordTextController.text,
+                                    name: _userNameTextController.text,
+                                    type: _selectedValue == 1
+                                        ? 'Therapist'
+                                        : 'User',
+                                    certificate:
+                                        downloadlink != '' ? downloadlink : '',
+                                  );
+                                  Get.find<UserController>().setUserDetails(
+                                    name: _userNameTextController.text,
+                                    email: _emailTextController.text,
+                                    password: _passwordTextController.text,
+                                    type: _selectedValue == 1
+                                        ? 'Therapist'
+                                        : 'User',
+                                    certificate:
+                                        downloadlink != '' ? downloadlink : '',
+                                  );
+
                                   print("Created New Account");
                                   ScaffoldMessenger.of(context)
                                       .showSnackBar(const SnackBar(
@@ -299,6 +336,28 @@ class SignUpScreenState extends State<SignUpScreen> {
                                               ? downloadlink
                                               : ''))
                                       .then((value) {
+                                      storeUserData(
+                                        email: _emailTextController.text,
+                                        password: _passwordTextController.text,
+                                        name: _userNameTextController.text,
+                                        type: _selectedValue == 1
+                                            ? 'Therapist'
+                                            : 'User',
+                                        certificate: downloadlink != ''
+                                            ? downloadlink
+                                            : '',
+                                      );
+                                      Get.find<UserController>().setUserDetails(
+                                        name: _userNameTextController.text,
+                                        email: _emailTextController.text,
+                                        password: _passwordTextController.text,
+                                        type: _selectedValue == 1
+                                            ? 'Therapist'
+                                            : 'User',
+                                        certificate: downloadlink != ''
+                                            ? downloadlink
+                                            : '',
+                                      );
                                       print("Created New Account");
                                       ScaffoldMessenger.of(context)
                                           .showSnackBar(const SnackBar(

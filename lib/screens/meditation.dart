@@ -1,8 +1,10 @@
+import 'package:antarmitra/controller/usercontroller.dart';
 import 'package:antarmitra/utils/app_color.dart';
 import 'package:antarmitra/utils/app_constants.dart';
 import 'package:antarmitra/widgets/appBar.dart';
 import 'package:antarmitra/widgets/timer.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class Meditation extends StatefulWidget {
   final Widget timerWidget;
@@ -78,8 +80,10 @@ class _MeditationState extends State<Meditation> {
 
   @override
   Widget build(BuildContext context) {
+    var userController = Get.find<UserController>();
     return Scaffold(
-        appBar: buildAppBar(text: 'Ishika\'s Space'),
+        appBar:
+            buildAppBar(text: userController.userName.value.split(' ').first),
         body: Container(
           color: Colors.white,
           child: Column(
