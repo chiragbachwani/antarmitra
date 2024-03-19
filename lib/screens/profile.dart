@@ -1,6 +1,7 @@
 import 'package:antarmitra/screens/onboarding.dart';
 import 'package:antarmitra/screens/profile.dart';
 import 'package:antarmitra/screens/sign_in.dart';
+import 'package:antarmitra/utils/app_color.dart';
 import 'package:antarmitra/utils/app_constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -60,8 +61,9 @@ class Profile extends StatelessWidget {
                 // data['image_url'] == '' &&
                 //         controller.profileImgPath.isEmpty
                 //     ?
-                const CircleAvatar(
+                CircleAvatar(
                   radius: 60,
+                  backgroundImage: AssetImage('assets/images/profile.gif'),
                   // backgroundImage: AssetImage("assets/image/profile.gif"),
                 )
                 // : data['image_url'] != '' &&
@@ -143,7 +145,7 @@ class Profile extends StatelessWidget {
                 Visibility(
                   // visible: point == -1 ? false : true,
                   child: ListTile(
-                    splashColor: Colors.green,
+                    splashColor: AppColor.fourth,
                     onTap: () async {},
                     // trailing: Icon(Icons.arrow_forward_ios_outlined),
                     leading: Image.asset(
@@ -164,16 +166,20 @@ class Profile extends StatelessWidget {
                   thickness: 1,
                 ),
                 ListTile(
-                  splashColor: Colors.green,
+                  leading: Icon(
+                    Icons.question_mark_outlined,
+                    color: AppColor.sixth,
+                  ),
+                  splashColor: AppColor.fourth,
                   onTap: () async {
                     // controller.linkWithGoogle(context).then((value) {
                     //   controller.storeGoogleData(
                     //       context: context, email: googleEmail);
                     // });
                   },
-                  trailing: const Icon(Icons.arrow_forward_ios_outlined),
+                  // trailing: const Icon(Icons.arrow_forward_ios_outlined),
                   title: const Text(
-                    'Link your Google Account',
+                    'FAQ',
                     style: TextStyle(
                         color: Vx.gray600,
                         fontSize: 17,
@@ -184,14 +190,18 @@ class Profile extends StatelessWidget {
                   thickness: 1,
                 ),
                 ListTile(
-                  splashColor: Colors.green,
+                  leading: Icon(
+                    Icons.question_answer,
+                    color: AppColor.sixth,
+                  ),
+                  splashColor: AppColor.fourth,
                   onTap: () {
                     // Get.to(() => LinkMobileScreen(),
                     //     transition: Transition.rightToLeft);
                   },
-                  trailing: const Icon(Icons.arrow_forward_ios_outlined),
+                  // trailing: const Icon(Icons.arrow_forward_ios_outlined),
                   title: const Text(
-                    'Link your Phone Number',
+                    'Feedback',
                     style: TextStyle(
                         color: Vx.gray600,
                         fontSize: 17,
@@ -202,14 +212,18 @@ class Profile extends StatelessWidget {
                   thickness: 1,
                 ),
                 ListTile(
-                  splashColor: Colors.green,
+                  leading: Icon(
+                    Icons.people,
+                    color: AppColor.sixth,
+                  ),
+                  splashColor: AppColor.fourth,
                   onTap: () {
                     // Get.to(() => LinkEmailScreen(),
                     //     transition: Transition.rightToLeft);
                   },
-                  trailing: const Icon(Icons.arrow_forward_ios_outlined),
+                  // trailing: const Icon(Icons.arrow_forward_ios_outlined),
                   title: const Text(
-                    'Link your Username and password',
+                    'About Us',
                     style: TextStyle(
                         color: Vx.gray600,
                         fontSize: 17,

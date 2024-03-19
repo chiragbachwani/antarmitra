@@ -87,7 +87,7 @@ class OnBoarding extends StatelessWidget {
                   height: 400,
                 ),
                 Text(
-                  'Welcome to AntarMitra, Your Foe in attaining Inner Peace & Harmony',
+                  'Welcome to AntarMitra, Your Friend in achieving Inner Peace & Harmony',
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 20),
                 ),
