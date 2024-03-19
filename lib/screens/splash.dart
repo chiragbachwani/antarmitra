@@ -1,6 +1,10 @@
 // import 'package:femhealth/utils/route_name.dart';
+import 'package:antarmitra/firebase_const.dart';
+import 'package:antarmitra/navBar.dart';
+import 'package:antarmitra/screens/homescreen.dart';
 import 'package:antarmitra/screens/onboarding.dart';
 import 'package:antarmitra/utils/app_constants.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 
@@ -12,15 +16,23 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  void changeScreen() {
-    Future.delayed(const Duration(seconds: 3)).then((_) {
-      Get.to(() => const OnBoarding());
+  gotoNextScreen() {
+    Future.delayed(const Duration(seconds: 3), () {
+      // Get.to(() => const LoginScren());
+
+      auth.authStateChanges().listen((User? user) {
+        if (user == null && mounted) {
+          Get.to(const OnBoarding());
+        } else {
+          Get.to(() => NavBar());
+        }
+      });
     });
   }
 
   @override
   void initState() {
-    changeScreen();
+    gotoNextScreen();
     super.initState();
   }
 

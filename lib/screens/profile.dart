@@ -1,5 +1,7 @@
 import 'package:antarmitra/screens/profile.dart';
+import 'package:antarmitra/screens/sign_in.dart';
 import 'package:antarmitra/utils/app_constants.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 export 'package:velocity_x/velocity_x.dart';
 import 'package:get/get.dart';
@@ -29,13 +31,17 @@ class Profile extends StatelessWidget {
         actions: [
           TextButton(
               onPressed: () async {
-                // await FirebaseAuth.instance.signOut();
+                await FirebaseAuth.instance.signOut();
                 // _googleSignIn.signOut();
-                // VxToast.show(
-                //   context,
-                //   msg: "Logged out successfully",
-                // );
-                // Get.offAll(() => LoginScreen());
+                VxToast.show(
+                  context,
+                  msg: "Logged out successfully",
+                );
+                // Navigator.of(context)
+                //     .pushReplacement(MaterialPageRoute(builder: (context) {
+                //   return SignInScreen();
+
+                // }));
               },
               child: "Logout".text.size(16).bold.make())
         ],

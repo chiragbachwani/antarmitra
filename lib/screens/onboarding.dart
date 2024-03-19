@@ -1,5 +1,6 @@
 import 'package:antarmitra/routes/route_name.dart';
 import 'package:antarmitra/screens/profile.dart';
+import 'package:antarmitra/screens/sign_in.dart';
 import 'package:antarmitra/screens/sign_up.dart';
 import 'package:antarmitra/utils/app_color.dart';
 import 'package:antarmitra/utils/app_constants.dart';
@@ -68,7 +69,7 @@ class OnBoarding extends StatelessWidget {
         leading: Image.asset(ImagePath.appLogo),
         onFinish: () {
           // Navigator.of(context).pushNamed(RouteName.signUp);
-          Get.to(() => const SignUpScreen());
+          Get.to(() => SignInScreen());
         },
 
         totalPage: 3,
