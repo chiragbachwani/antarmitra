@@ -1,3 +1,4 @@
+import 'package:antarmitra/screens/profile.dart';
 import 'package:flutter/material.dart';
 
 import '../controller/homecontroller.dart';
@@ -10,8 +11,18 @@ class prayatnaCode extends StatelessWidget {
   Widget build(BuildContext context) {
     var controller = Get.find<homeController>();
     return Scaffold(
-      body:
-          Center(child: Container(child: Text('${controller.apiCode.value}'))),
+      body: Center(
+          child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Container(
+              decoration:
+                  BoxDecoration(borderRadius: BorderRadius.circular(12)),
+              child: Image.asset('assets/images/prayatna.webp').box.make()),
+          50.heightBox,
+          Container(child: Text('${controller.apiCode.value}')),
+        ],
+      )),
     );
   }
 }
