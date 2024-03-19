@@ -1,10 +1,11 @@
-import 'package:antarmitra/screens/Homesceen.dart';
+// import 'package:antarmitra/screens/Homesceen.dart';
 import 'package:antarmitra/screens/community.dart';
 import 'package:antarmitra/screens/exercise.dart';
 import 'package:antarmitra/screens/meditation.dart';
 import 'package:antarmitra/screens/profile.dart';
 import 'package:antarmitra/utils/app_color.dart';
-import 'package:antarmitra/widgets/mediationDialog.dart';
+import 'package:antarmitra/screens/mediationDialog.dart';
+import 'package:antarmitra/screens/homescreen.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
@@ -19,7 +20,7 @@ class NavBar extends StatelessWidget {
 
     List<Widget> buildScreens() {
       return [
-        const Home(),
+        Home(),
         const Community(),
         const DialogMeditation(),
         const Exercise(),
@@ -42,8 +43,10 @@ class NavBar extends StatelessWidget {
           activeColorPrimary: AppColor.sixth,
         ),
         PersistentBottomNavBarItem(
-          icon: const Icon(Icons.video_call),
+          icon: const Icon(Icons.video_camera_front_rounded),
           title: ("Meditation"),
+          activeColorSecondary: AppColor.fifth,
+          inactiveColorSecondary: AppColor.sixth,
           inactiveColorPrimary: AppColor.fifth,
           activeColorPrimary: AppColor.sixth,
         ),

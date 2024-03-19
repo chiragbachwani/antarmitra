@@ -1,6 +1,7 @@
 import 'package:antarmitra/controller/user_provider.dart';
 import 'package:antarmitra/navBar.dart';
 import 'package:antarmitra/screens/sign_in.dart';
+import 'package:antarmitra/utils/app_color.dart';
 import 'package:antarmitra/widgets/reusable_widget.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -102,7 +103,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   }
 
   Widget _buildGoogleSignInButton() {
-    return ElevatedButton.icon(
+    return IconButton(
       onPressed: () async {
         UserCredential? userCredential = await _handleSignIn();
         if (userCredential != null) {
@@ -119,13 +120,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
           ));
         }
       },
-      style: ElevatedButton.styleFrom(
-          backgroundColor: Colors.black, minimumSize: const Size(400, 60)),
-      icon: Image.asset("assets/logos/coinLogo.png", height: 30),
-      label: const Text(
-        "Continue with Google",
-        style: TextStyle(color: Colors.white),
-      ),
+      style: ElevatedButton.styleFrom(backgroundColor: AppColor.fifth),
+      icon: Image.asset("assets/logos/google_logo.png", height: 30),
     );
   }
 

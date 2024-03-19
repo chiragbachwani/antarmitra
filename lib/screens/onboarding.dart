@@ -3,6 +3,8 @@ import 'package:antarmitra/screens/profile.dart';
 import 'package:antarmitra/screens/sign_up.dart';
 import 'package:antarmitra/utils/app_color.dart';
 import 'package:antarmitra/utils/app_constants.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 // import 'package:femhealth/utils/route_name.dart';
 import 'package:flutter/material.dart';
@@ -20,23 +22,50 @@ class OnBoarding extends StatelessWidget {
         headerBackgroundColor: Colors.white,
         finishButtonText: 'Register',
         finishButtonStyle: const FinishButtonStyle(
-          backgroundColor: AppColor.first,
-        ),
+            highlightElevation: 20,
+            elevation: 5,
+            backgroundColor: AppColor.first,
+            splashColor: AppColor.fifth),
         skipTextButton: const Text('Skip'),
         // trailing: const Text('Login'),
         // pageBackgroundColor: const Color.fromARGB(255, 227, 255, 252),
         background: [
-          Image.asset('assets/images/onb3.jpg'),
-          Image.asset('assets/images/onb2.jpg'),
+          Column(
+            children: [
+              const SizedBox(
+                height: 60,
+              ),
+              Container(
+                alignment: Alignment.bottomCenter,
+                height: 250,
+                child: Image.asset(
+                  ImagePath.appLogo,
+                ),
+              ),
+            ],
+          ),
+          Column(
+            children: [
+              const SizedBox(
+                height: 60,
+              ),
+              Container(
+                alignment: Alignment.bottomCenter,
+                height: 250,
+                child: Image.asset('assets/images/onb2.jpg'),
+              ),
+            ],
+          ),
+          // Image.asset('assets/images/onb2.jpg'),
           Image.asset('assets/images/onb1.jpg'),
         ],
         centerBackground: true,
-        // hasFloatingButton: true,
+
         controllerColor: AppColor.sixth,
         indicatorAbove: true,
         indicatorPosition: 90,
 
-        leading: Image.asset(ImagePath.coinLogo),
+        leading: Image.asset(ImagePath.appLogo),
         onFinish: () {
           // Navigator.of(context).pushNamed(RouteName.signUp);
           Get.to(() => const SignUpScreen());
@@ -53,7 +82,7 @@ class OnBoarding extends StatelessWidget {
                   height: 400,
                 ),
                 Text(
-                  'Welcome to Your Well-being Journey',
+                  'Welcome to AntarMitra, Your Foe in attaining Inner Peace & Harmony',
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 20),
                 ),
@@ -68,7 +97,10 @@ class OnBoarding extends StatelessWidget {
                   height: 400,
                 ),
                 Text(
-                    'Effortlessly monitor your menstrual cycle and identify fertile days with our intuitive ovulation tracker. Understand your body\'s natural rhythm for better family planning or simply to stay in tune with your health'),
+                  'Train your mind like a muscle: - The more you exercise it , the stronger and more resilient it becomes.',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 20),
+                ),
               ],
             ),
           ),
@@ -80,7 +112,10 @@ class OnBoarding extends StatelessWidget {
                   height: 400,
                 ),
                 Text(
-                    'Get personalized insights into your health journey. Track ovulation, fertility, and receive helpful tips tailored to your unique needs. Your well-being is our priority, empowering you to make informed decisions for a healthier lifestyle'),
+                  'Say Goodbye to Anxiety and Bad Thoughts, Integrate AntarMitra in Your life',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 20),
+                ),
               ],
             ),
           ),

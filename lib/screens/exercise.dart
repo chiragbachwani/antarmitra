@@ -1,3 +1,4 @@
+import 'package:antarmitra/widgets/appBar.dart';
 import 'package:flutter/material.dart';
 
 class Exercise extends StatelessWidget {
@@ -5,8 +6,11 @@ class Exercise extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
-      body: Container(color: Colors.pink,),
+    return Scaffold(
+      appBar: buildAppBar(text: 'Ishika\'s Space'),
+      body: Container(
+        color: Colors.pink,
+      ),
     );
   }
 }

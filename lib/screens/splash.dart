@@ -30,8 +30,8 @@ class _SplashScreenState extends State<SplashScreen> {
         color: Colors.white,
         child: Center(
           child: Image.asset(
-            ImagePath.coinLogo,
-            width: 100,
+            ImagePath.appLogo,
+            width: 150,
           ),
         ));
   }

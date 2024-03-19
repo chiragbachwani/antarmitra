@@ -79,27 +79,7 @@ class _MeditationState extends State<Meditation> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: buildAppBar(text: 'Ishsika\'s Space', actions: <Widget>[
-          Row(
-            children: [
-              const Text(
-                '32',
-                style: TextStyle(
-                  color: AppColor.fifth,
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              const SizedBox(width: 10),
-              Image.asset(
-                ImagePath.coinLogo,
-                height: 40,
-                width: 40,
-              ),
-              const SizedBox(width: 10),
-            ],
-          ),
-        ]),
+        appBar: buildAppBar(text: 'Ishika\'s Space'),
         body: Container(
           color: Colors.white,
           child: Column(
