@@ -11,22 +11,22 @@ class UserProvider extends ChangeNotifier {
   String? get username => _username;
 
   UserProvider() {
-    _loadUsername();
+    // _loadUsername();
   }
 
-  void _loadUsername() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    _username = prefs.getString(_usernameKey);
-    notifyListeners();
-  }
+  // void _loadUsername() async {
+  //   SharedPreferences prefs = await SharedPreferences.getInstance();
+  //   _username = prefs.getString(_usernameKey);
+  //   notifyListeners();
+  // }
 
-  void setUsername(String username) async {
-    _username = username;
-    notifyListeners();
+  // void setUsername(String username) async {
+  //   _username = username;
+  //   notifyListeners();
 
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setString(_usernameKey, username);
-  }
+  //   SharedPreferences prefs = await SharedPreferences.getInstance();
+  //   prefs.setString(_usernameKey, username);
+  // }
 
 
 }
