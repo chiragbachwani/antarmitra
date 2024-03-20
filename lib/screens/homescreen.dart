@@ -15,12 +15,13 @@ class Therapist {
   final String name;
   final String experience;
   final bool isOnline;
+  final String image;
 
-  Therapist({
-    required this.name,
-    required this.experience,
-    required this.isOnline,
-  });
+  Therapist(
+      {required this.name,
+      required this.experience,
+      required this.isOnline,
+      required this.image});
 }
 
 class Home extends StatelessWidget {
@@ -28,10 +29,20 @@ class Home extends StatelessWidget {
 
   final List<Therapist> therapists = [
     Therapist(
-        name: "Mr. Rakesh Sharma", experience: "7+ Years", isOnline: true),
-    Therapist(name: "Ms. Priya Singh", experience: "5+ Years", isOnline: false),
+        name: "Mr. Rakesh Sharma",
+        experience: "7+ Years",
+        isOnline: true,
+        image: 'assets/logos/male2.jpeg'),
     Therapist(
-        name: "Dr. Rajesh Verma", experience: "10+ Years", isOnline: true),
+        name: "Ms. Priya Singh",
+        experience: "5+ Years",
+        isOnline: false,
+        image: 'assets/logos/female.jpeg'),
+    Therapist(
+        name: "Dr. Rajesh Verma",
+        experience: "10+ Years",
+        isOnline: true,
+        image: 'assets/logos/male1.jpeg'),
     // Add more therapists as needed
   ];
 
@@ -128,8 +139,16 @@ class Home extends StatelessWidget {
                                         children: [
                                           // const SizedBox(width: 5),
                                           // const SizedBox(width: 10),
-                                          const Icon(Icons.circle_outlined,
-                                              size: 80),
+                                          const Icon(
+                                            Icons.person,
+                                            size: 80,
+                                            color: AppColor.fifth,
+                                          ),
+                                          // CircleAvatar(
+                                          //   radius: 40,
+                                          //   backgroundImage:
+                                          //       AssetImage(therapist.image),
+                                          // ),
                                           const SizedBox(
                                               width: 20), // Adjust as needed
                                           Column(
