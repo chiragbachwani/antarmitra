@@ -1,4 +1,5 @@
 import 'package:antarmitra/controller/usercontroller.dart';
+import 'package:antarmitra/screens/face_detection.dart';
 import 'package:antarmitra/screens/meditation.dart';
 import 'package:antarmitra/utils/app_color.dart';
 import 'package:antarmitra/utils/app_constants.dart';
@@ -58,12 +59,16 @@ class _DialogMeditationState extends State<DialogMeditation> {
                   style:
                       ElevatedButton.styleFrom(fixedSize: const Size(200, 40)),
                   onPressed: () {
-                    Get.to(() => Meditation(
-                          timerWidget: TimerWidget(
-                            duration: const Duration(minutes: 2),
-                            onFinish: showSessionCompleteDialog,
-                          ),
-                        ));
+                    //   Get.to(() => Meditation(
+                    //         timerWidget: TimerWidget(
+                    //           duration: const Duration(minutes: 2),
+                    //           onFinish: showSessionCompleteDialog,
+                    //         ),
+                    //       ));
+                    // },
+                    Get.to(
+                      () => CameraScreen(),
+                    );
                   },
                   child: const Text("Quick Calm Mode")),
               ElevatedButton(
