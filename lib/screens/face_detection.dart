@@ -1,3 +1,4 @@
+import 'package:antarmitra/widgets/timer.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'dart:convert';
@@ -22,12 +23,35 @@ class _CameraScreenState extends State<CameraScreen> {
   late WebSocketChannel channel;
   DetectionStatus? status;
 
+  void showSessionCompleteDialog() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text("Session Completed"),
+          content: const Text("Your meditation session has been completed."),
+          actions: <Widget>[
+            TextButton(
+              child: const Text("OK"),
+              onPressed: () {
+                Navigator.of(context).pop();
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  var count = 0;
   String get currentStatus {
     if (status == null) {
       return "Initializing...";
     }
     switch (status!) {
       case DetectionStatus.noFace:
+        count++;
         return "No Face in screen!!";
       case DetectionStatus.fail:
         return "Unrecognized Face in screen";
@@ -132,27 +156,50 @@ class _CameraScreenState extends State<CameraScreen> {
       return const SizedBox();
     }
 
-    return Stack(
-      children: [
-        Positioned.fill(
-          child: AspectRatio(
-            aspectRatio: controller!.value.aspectRatio,
-            child: CameraPreview(controller!),
-          ),
-        ),
-        Align(
-          alignment: const Alignment(0, .85),
-          child: ElevatedButton(
-            style:
-                ElevatedButton.styleFrom(surfaceTintColor: currentStatusColor),
-            child: Text(
-              currentStatus,
-              style: const TextStyle(fontSize: 20),
+    return Scaffold(
+      body: Stack(
+        children: [
+          Positioned.fill(
+            child: AspectRatio(
+              aspectRatio: controller!.value.aspectRatio,
+              child: CameraPreview(controller!),
             ),
-            onPressed: () {},
           ),
-        )
-      ],
+          Row(
+            children: [
+              Align(
+                alignment: const Alignment(0, .85),
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      surfaceTintColor: currentStatusColor),
+                  child: Text(
+                    currentStatus,
+                    style: const TextStyle(fontSize: 20),
+                  ),
+                  onPressed: () {},
+                ),
+              ),
+              const SizedBox(width: 50),
+              Align(
+                alignment: const Alignment(0, .85),
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      surfaceTintColor: currentStatusColor),
+                  child: Text(
+                    count.toString(),
+                    style: const TextStyle(fontSize: 20),
+                  ),
+                  onPressed: () {},
+                ),
+              ),
+              TimerWidget(
+                duration: const Duration(minutes: 2),
+                onFinish: showSessionCompleteDialog,
+              ),
+            ],
+          )
+        ],
+      ),
     );
   }
 }

@@ -16,26 +16,6 @@ class DialogMeditation extends StatefulWidget {
 }
 
 class _DialogMeditationState extends State<DialogMeditation> {
-  void showSessionCompleteDialog() {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text("Session Completed"),
-          content: const Text("Your meditation session has been completed."),
-          actions: <Widget>[
-            TextButton(
-              child: const Text("OK"),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-        );
-      },
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     var userController = Get.find<UserController>();
@@ -67,7 +47,7 @@ class _DialogMeditationState extends State<DialogMeditation> {
                     //       ));
                     // },
                     Get.to(
-                      () => CameraScreen(),
+                      () => const CameraScreen(),
                     );
                   },
                   child: const Text("Quick Calm Mode")),
@@ -75,24 +55,24 @@ class _DialogMeditationState extends State<DialogMeditation> {
                   style:
                       ElevatedButton.styleFrom(fixedSize: const Size(200, 40)),
                   onPressed: () {
-                    Get.to(() => Meditation(
-                          timerWidget: TimerWidget(
-                            duration: const Duration(minutes: 5),
-                            onFinish: showSessionCompleteDialog,
-                          ),
-                        ));
+                    // Get.to(() => Meditation(
+                    //       timerWidget: TimerWidget(
+                    //         duration: const Duration(minutes: 5),
+                    //         // onFinish: showSessionCompleteDialog,
+                    //       ),
+                    //     ));
                   },
                   child: const Text("Blissful Five Mode")),
               ElevatedButton(
                   style:
                       ElevatedButton.styleFrom(fixedSize: const Size(200, 40)),
                   onPressed: () {
-                    Get.to(() => Meditation(
-                          timerWidget: TimerWidget(
-                            duration: const Duration(minutes: 10),
-                            onFinish: showSessionCompleteDialog,
-                          ),
-                        ));
+                    // Get.to(() => Meditation(
+                    //       timerWidget: TimerWidget(
+                    //         duration: const Duration(minutes: 10),
+                    //         onFinish: showSessionCompleteDialog,
+                    //       ),
+                    //     ));
                   },
                   child: const Text("Serenity Stretch")),
             ],

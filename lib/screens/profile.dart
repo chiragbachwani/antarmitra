@@ -1,5 +1,6 @@
 import 'package:antarmitra/controller/usercontroller.dart';
 import 'package:antarmitra/firebase_const.dart';
+import 'package:antarmitra/screens/bot.dart';
 import 'package:antarmitra/screens/onboarding.dart';
 import 'package:antarmitra/screens/profile.dart';
 import 'package:antarmitra/screens/sign_in.dart';
@@ -90,14 +91,11 @@ class Profile extends StatelessWidget {
                 //   children: [
                 //     IconButton(
                 //         onPressed: () async {
-                //           await userController
-                //               .selectImagefromGallery(context);
-                //           if (controller
-                //               .profileImgPath.value.isNotEmpty) {
+                //           await userController.selectImagefromGallery(context);
+                //           if (controller.profileImgPath.value.isNotEmpty) {
                 //             await controller.uplaodProfileImage();
                 //           } else {
-                //             controller.profileImagelink =
-                //                 data['image_url'];
+                //             controller.profileImagelink = data['image_url'];
                 //           }
                 //           controller.storeimage();
                 //           setState(() {
@@ -112,12 +110,10 @@ class Profile extends StatelessWidget {
                 //     IconButton(
                 //         onPressed: () async {
                 //           await controller.selectImagefromCamera(context);
-                //           if (controller
-                //               .profileImgPath.value.isNotEmpty) {
+                //           if (controller.profileImgPath.value.isNotEmpty) {
                 //             await controller.uplaodProfileImage();
                 //           } else {
-                //             controller.profileImagelink =
-                //                 data['image_url'];
+                //             controller.profileImagelink = data['image_url'];
                 //           }
                 //           controller.storeimage();
                 //           setState(() {
@@ -191,11 +187,12 @@ class Profile extends StatelessWidget {
                     color: AppColor.sixth,
                   ),
                   splashColor: AppColor.fourth,
-                  onTap: () async {
+                  onTap: () {
                     // controller.linkWithGoogle(context).then((value) {
                     //   controller.storeGoogleData(
                     //       context: context, email: googleEmail);
                     // });
+                    Get.to(() => const ChatBot());
                   },
                   // trailing: const Icon(Icons.arrow_forward_ios_outlined),
                   title: const Text(

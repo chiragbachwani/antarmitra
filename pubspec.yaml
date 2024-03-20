@@ -50,6 +50,7 @@ dependencies:
   camera: ^0.10.5+3
   image: ^4.0.17
   web_socket_channel: ^2.4.0
+  dash_chat_2: ^0.0.20
 
 dev_dependencies:
   flutter_test:
