@@ -18,7 +18,7 @@ class Profile extends StatelessWidget {
     auth.authStateChanges().listen((user) {
       currentuser = user;
     });
-    var controller = Get.put(ProfileController());
+    // var controller = Get.put(ProfileController());
     var userController = Get.find<UserController>();
     return Scaffold(
       appBar: AppBar(
@@ -90,19 +90,19 @@ class Profile extends StatelessWidget {
                   children: [
                     IconButton(
                         onPressed: () async {
-                          await userController
-                              .selectImagefromGallery(context);
-                          if (controller
-                              .profileImgPath.value.isNotEmpty) {
-                            await controller.uplaodProfileImage();
-                          } else {
-                            controller.profileImagelink =
-                                data['image_url'];
-                          }
-                          controller.storeimage();
-                          setState(() {
-                            VxToast.show(context, msg: "Profile Updated");
-                          });
+                          // await userController
+                          //     .selectImagefromGallery(context);
+                          // if (controller
+                          //     .profileImgPath.value.isNotEmpty) {
+                          //   await controller.uplaodProfileImage();
+                          // } else {
+                          //   controller.profileImagelink =
+                          //       data['image_url'];
+                          // }
+                          // controller.storeimage();
+                          // setState(() {
+                          //   VxToast.show(context, msg: "Profile Updated");
+                          // });
                         },
                         icon: const Icon(
                           Icons.photo_size_select_actual_rounded,
@@ -111,18 +111,18 @@ class Profile extends StatelessWidget {
                     5.widthBox,
                     IconButton(
                         onPressed: () async {
-                          await controller.selectImagefromCamera(context);
-                          if (controller
-                              .profileImgPath.value.isNotEmpty) {
-                            await controller.uplaodProfileImage();
-                          } else {
-                            controller.profileImagelink =
-                                data['image_url'];
-                          }
-                          controller.storeimage();
-                          setState(() {
-                            VxToast.show(context, msg: "Profile Updated");
-                          });
+                          // await controller.selectImagefromCamera(context);
+                          // if (controller
+                          //     .profileImgPath.value.isNotEmpty) {
+                          //   await controller.uplaodProfileImage();
+                          // } else {
+                          //   controller.profileImagelink =
+                          //       data['image_url'];
+                          // }
+                          // controller.storeimage();
+                          // setState(() {
+                          //   VxToast.show(context, msg: "Profile Updated");
+                          // });
                         },
                         icon: const Icon(
                           Icons.camera,
