@@ -45,6 +45,11 @@ dependencies:
   cloud_firestore: ^4.15.9
   file_picker: ^6.2.0
   firebase_storage: ^11.6.10
+  image_picker: ^1.0.7
+  permission_handler: ^11.3.0
+  camera: ^0.10.5+3
+  image: ^4.0.17
+  web_socket_channel: ^2.4.0
 
 dev_dependencies:
   flutter_test:
