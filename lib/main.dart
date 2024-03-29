@@ -1,5 +1,5 @@
 import 'package:antarmitra/api/apiservices.dart';
-import 'package:antarmitra/controller/user_provider.dart';
+// import 'package:antarmitra/controller/user_provider.dart';
 import 'package:antarmitra/controller/usercontroller.dart';
 import 'package:antarmitra/firebase_options.dart';
 import 'package:antarmitra/navBar.dart';
@@ -19,10 +19,7 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   runApp(
-    ChangeNotifierProvider(
-      create: (context) => UserProvider(),
-      child: const MyApp(),
-    ),
+    const MyApp(),
   );
 
   fetchApiCode();

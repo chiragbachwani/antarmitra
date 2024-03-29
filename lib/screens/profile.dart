@@ -1,6 +1,5 @@
 import 'package:antarmitra/controller/usercontroller.dart';
 import 'package:antarmitra/firebase_const.dart';
-import 'package:antarmitra/screens/bot.dart';
 import 'package:antarmitra/screens/onboarding.dart';
 import 'package:antarmitra/screens/profile.dart';
 import 'package:antarmitra/screens/sign_in.dart';
@@ -192,7 +191,6 @@ class Profile extends StatelessWidget {
                     //   controller.storeGoogleData(
                     //       context: context, email: googleEmail);
                     // });
-                    Get.to(() => const ChatBot());
                   },
                   // trailing: const Icon(Icons.arrow_forward_ios_outlined),
                   title: const Text(

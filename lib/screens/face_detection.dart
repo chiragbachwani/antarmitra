@@ -9,10 +9,11 @@ import 'package:web_socket_channel/web_socket_channel.dart';
 import 'package:web_socket_channel/io.dart';
 import 'package:image/image.dart' as img;
 
-enum DetectionStatus { noFace, fail, success }
+enum DetectionStatus { noFace, success }
 
 class CameraScreen extends StatefulWidget {
-  const CameraScreen({super.key});
+  final int minutes;
+  const CameraScreen({super.key, required this.minutes});
 
   @override
   State<CameraScreen> createState() => _CameraScreenState();
@@ -29,7 +30,8 @@ class _CameraScreenState extends State<CameraScreen> {
       builder: (BuildContext context) {
         return AlertDialog(
           title: const Text("Session Completed"),
-          content: const Text("Your meditation session has been completed."),
+          content: Text(
+              "Your meditation session has been completed.Your Total score is $count"),
           actions: <Widget>[
             TextButton(
               child: const Text("OK"),
@@ -51,12 +53,12 @@ class _CameraScreenState extends State<CameraScreen> {
     }
     switch (status!) {
       case DetectionStatus.noFace:
-        count++;
-        return "No Face in screen!!";
-      case DetectionStatus.fail:
-        return "Unrecognized Face in screen";
+        return "Uh Oh, No face Detected!!";
+      // case DetectionStatus.fail:
+      //   return "Unrecognized Face in screen";
       case DetectionStatus.success:
-        return "Familiar face in screen!";
+        count++;
+        return "Great, Keep going !";
     }
   }
 
@@ -67,8 +69,8 @@ class _CameraScreenState extends State<CameraScreen> {
     switch (status!) {
       case DetectionStatus.noFace:
         return Colors.grey;
-      case DetectionStatus.fail:
-        return Colors.red;
+      // case DetectionStatus.fail:
+      //   return Colors.red;
       case DetectionStatus.success:
         return Colors.greenAccent;
     }
@@ -94,7 +96,7 @@ class _CameraScreenState extends State<CameraScreen> {
     await controller!.initialize();
     setState(() {});
 
-    Timer.periodic(const Duration(seconds: 3), (timer) async {
+    Timer.periodic(const Duration(seconds: 1), (timer) async {
       try {
         final image = await controller!.takePicture();
         final compressedImageBytes = compressImage(image.path);
@@ -117,9 +119,9 @@ class _CameraScreenState extends State<CameraScreen> {
         case 0:
           status = DetectionStatus.noFace;
           break;
-        case 1:
-          status = DetectionStatus.fail;
-          break;
+        // case 1:
+        //   status = DetectionStatus.fail;
+        //   break;
         case 2:
           status = DetectionStatus.success;
           break;
@@ -165,8 +167,13 @@ class _CameraScreenState extends State<CameraScreen> {
               child: CameraPreview(controller!),
             ),
           ),
-          Row(
+          Column(
+            mainAxisAlignment: MainAxisAlignment.end,
             children: [
+              TimerWidget(
+                duration: Duration(minutes: widget.minutes),
+                onFinish: showSessionCompleteDialog,
+              ),
               Align(
                 alignment: const Alignment(0, .85),
                 child: ElevatedButton(
@@ -186,15 +193,11 @@ class _CameraScreenState extends State<CameraScreen> {
                   style: ElevatedButton.styleFrom(
                       surfaceTintColor: currentStatusColor),
                   child: Text(
-                    count.toString(),
+                    'Score :- $count',
                     style: const TextStyle(fontSize: 20),
                   ),
                   onPressed: () {},
                 ),
-              ),
-              TimerWidget(
-                duration: const Duration(minutes: 2),
-                onFinish: showSessionCompleteDialog,
               ),
             ],
           )

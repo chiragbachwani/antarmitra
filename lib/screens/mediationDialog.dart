@@ -39,15 +39,10 @@ class _DialogMeditationState extends State<DialogMeditation> {
                   style:
                       ElevatedButton.styleFrom(fixedSize: const Size(200, 40)),
                   onPressed: () {
-                    //   Get.to(() => Meditation(
-                    //         timerWidget: TimerWidget(
-                    //           duration: const Duration(minutes: 2),
-                    //           onFinish: showSessionCompleteDialog,
-                    //         ),
-                    //       ));
-                    // },
                     Get.to(
-                      () => const CameraScreen(),
+                      () => const CameraScreen(
+                        minutes: 2,
+                      ),
                     );
                   },
                   child: const Text("Quick Calm Mode")),
@@ -55,24 +50,22 @@ class _DialogMeditationState extends State<DialogMeditation> {
                   style:
                       ElevatedButton.styleFrom(fixedSize: const Size(200, 40)),
                   onPressed: () {
-                    // Get.to(() => Meditation(
-                    //       timerWidget: TimerWidget(
-                    //         duration: const Duration(minutes: 5),
-                    //         // onFinish: showSessionCompleteDialog,
-                    //       ),
-                    //     ));
+                    Get.to(
+                      () => const CameraScreen(
+                        minutes: 5,
+                      ),
+                    );
                   },
                   child: const Text("Blissful Five Mode")),
               ElevatedButton(
                   style:
                       ElevatedButton.styleFrom(fixedSize: const Size(200, 40)),
                   onPressed: () {
-                    // Get.to(() => Meditation(
-                    //       timerWidget: TimerWidget(
-                    //         duration: const Duration(minutes: 10),
-                    //         onFinish: showSessionCompleteDialog,
-                    //       ),
-                    //     ));
+                    Get.to(
+                      () => const CameraScreen(
+                        minutes: 10,
+                      ),
+                    );
                   },
                   child: const Text("Serenity Stretch")),
             ],

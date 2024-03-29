@@ -83,13 +83,15 @@ class Home extends StatelessWidget {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceEvenly,
                                 children: [
-                                  buildDay("M"),
-                                  buildDay("T"),
-                                  buildDay("W"),
-                                  buildDay("T"),
-                                  buildDay("F"),
-                                  buildDay("S"),
-                                  buildDay("S"),
+                                  buildDay("M", Icons.circle_outlined),
+                                  buildDay(
+                                      "T", Icons.check_circle_outline_outlined),
+                                  buildDay(
+                                      "W", Icons.check_circle_outline_outlined),
+                                  buildDay("T", Icons.circle_outlined),
+                                  buildDay("F", Icons.circle_outlined),
+                                  buildDay("S", Icons.circle_outlined),
+                                  buildDay("S", Icons.circle_outlined),
                                 ],
                               ),
                               const SizedBox(
@@ -230,7 +232,7 @@ class Home extends StatelessWidget {
         ));
   }
 
-  buildDay(String text) {
+  buildDay(String text, IconData didIcon) {
     return Column(
       children: [
         Text(
@@ -238,8 +240,8 @@ class Home extends StatelessWidget {
           style: const TextStyle(fontSize: 16),
         ),
         const SizedBox(height: 20),
-        const Icon(
-          Icons.circle_outlined,
+        Icon(
+          didIcon,
           size: 35,
         )
       ],
