@@ -168,8 +168,8 @@ class Profile extends StatelessWidget {
                       height: 30,
                       width: 30,
                     ),
-                    title: const Text(
-                      ' 32 Points',
+                    title: Text(
+                      '${userController.points.value}',
                       style: TextStyle(
                           color: Vx.gray600,
                           fontSize: 17,

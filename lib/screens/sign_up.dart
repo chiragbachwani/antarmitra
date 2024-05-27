@@ -297,16 +297,6 @@ class SignUpScreenState extends State<SignUpScreen> {
                                     certificate:
                                         downloadlink != '' ? downloadlink : '',
                                   );
-                                  Get.find<UserController>().setUserDetails(
-                                    name: _userNameTextController.text,
-                                    email: _emailTextController.text,
-                                    password: _passwordTextController.text,
-                                    type: _selectedValue == 1
-                                        ? 'Therapist'
-                                        : 'User',
-                                    certificate:
-                                        downloadlink != '' ? downloadlink : '',
-                                  );
 
                                   print("Created New Account");
                                   ScaffoldMessenger.of(context)

@@ -7,7 +7,7 @@ class Exercise extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: buildAppBar(text: 'Ishika\'s Space'),
+      appBar: buildAppBar(),
       body: Container(
         color: Colors.pink,
       ),

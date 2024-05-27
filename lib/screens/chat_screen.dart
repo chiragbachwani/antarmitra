@@ -33,7 +33,7 @@ class _ChatScreenState extends State<ChatScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: buildAppBar(text: "User name"),
+        appBar: buildAppBar(),
         body: Column(children: [
           Expanded(
             child: ListView.builder(

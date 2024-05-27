@@ -14,7 +14,7 @@ class Community extends StatelessWidget {
   Widget build(BuildContext context) {
     var userController = Get.find<UserController>();
     return Scaffold(
-      appBar: buildAppBar(text: userController.userName.value.split(' ').first),
+      appBar: buildAppBar(),
       body: MessagesList(),
     );
   }

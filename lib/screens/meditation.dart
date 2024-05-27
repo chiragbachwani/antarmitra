@@ -83,7 +83,7 @@ class _MeditationState extends State<Meditation> {
     var userController = Get.find<UserController>();
     return Scaffold(
         appBar:
-            buildAppBar(text: userController.userName.value.split(' ').first),
+            buildAppBar(),
         body: Container(
           color: Colors.white,
           child: Column(

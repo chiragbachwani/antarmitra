@@ -20,7 +20,7 @@ class _DialogMeditationState extends State<DialogMeditation> {
   Widget build(BuildContext context) {
     var userController = Get.find<UserController>();
     return Scaffold(
-      appBar: buildAppBar(text: userController.userName.value.split(' ').first),
+      appBar: buildAppBar(),
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(16.0),

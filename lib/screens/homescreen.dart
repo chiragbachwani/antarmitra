@@ -1,11 +1,13 @@
 import 'package:antarmitra/controller/homecontroller.dart';
 import 'package:antarmitra/controller/usercontroller.dart';
+import 'package:antarmitra/firebase_const.dart';
 import 'package:antarmitra/routes/route_name.dart';
 import 'package:antarmitra/screens/community.dart';
 import 'package:antarmitra/screens/prayatnascreen.dart';
 import 'package:antarmitra/utils/app_color.dart';
 import 'package:antarmitra/utils/app_constants.dart';
 import 'package:antarmitra/widgets/appBar.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -46,12 +48,30 @@ class Home extends StatelessWidget {
     // Add more therapists as needed
   ];
 
+  // Future<void> getUserDetails() async {
+  //   DocumentSnapshot documentSnapshot;
+  //   try {
+  //     documentSnapshot = await FirebaseFirestore.instance
+  //         .collection('Users')
+  //         .doc(currentuser!.uid)
+  //         .get();
+
+  //     if (documentSnapshot.exists) {
+  //       print(documentSnapshot.data());
+  //       var data = documentSnapshot.data();
+  //     } else {
+  //       print('Document does not exist');
+  //     }
+  //   } catch (e) {
+  //     print('Error fetching document: $e');
+  //   }
+  // }
+
   @override
   Widget build(BuildContext context) {
     var userController = Get.find<UserController>();
     return Scaffold(
-        appBar:
-            buildAppBar(text: userController.userName.value.split(' ').first),
+        appBar: buildAppBar(),
         body: SingleChildScrollView(
           child: Column(
             children: [
@@ -204,11 +224,11 @@ class Home extends StatelessWidget {
                                 alignment: Alignment.centerLeft,
                                 child: Text('Current Streak Days - ',
                                     style: TextStyle(
-                                        fontSize: 20, color: AppColor.fifth)),
+                                        fontSize: 16, color: AppColor.fifth)),
                               ),
                               Text('14 Days ' '🔥',
                                   style: TextStyle(
-                                      fontSize: 20,
+                                      fontSize: 16,
                                       color: AppColor.fifth,
                                       fontWeight: FontWeight.bold)),
                               // SizedBox(height: 30),
