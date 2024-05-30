@@ -9,7 +9,9 @@ import 'package:antarmitra/screens/homescreen.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
+
 class NavBar extends StatelessWidget {
+  
   const NavBar({super.key});
 
   @override

@@ -1,10 +1,12 @@
 import 'package:antarmitra/api/apiservices.dart';
 // import 'package:antarmitra/controller/user_provider.dart';
 import 'package:antarmitra/controller/usercontroller.dart';
+import 'package:antarmitra/firebase_const.dart';
 import 'package:antarmitra/firebase_options.dart';
 import 'package:antarmitra/navBar.dart';
 import 'package:antarmitra/screens/splash.dart';
 import 'package:antarmitra/utils/app_color.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -12,6 +14,7 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 String apiCode = '';
+@override
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -23,6 +26,27 @@ void main() async {
   );
 
   fetchApiCode();
+
+  getSingleDocument();
+}
+
+Future<void> getSingleDocument() async {
+  DocumentSnapshot documentSnapshot;
+  try {
+    documentSnapshot = await FirebaseFirestore.instance
+        .collection('Users')
+        .doc(currentuser!.uid)
+        .get();
+
+    if (documentSnapshot.exists) {
+      print(
+          'Document data: ${documentSnapshot.data() as Map<String, dynamic>?}');
+    } else {
+      print('Document does not exist');
+    }
+  } catch (e) {
+    print('Error fetching document: $e');
+  }
 }
 
 class MyApp extends StatelessWidget {
