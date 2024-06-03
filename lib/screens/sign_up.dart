@@ -37,6 +37,7 @@ storeUserData({name, password, email, type, certificate}) async {
     'type': type,
     'image_url': '',
     'certificate': certificate,
+    'points': 0
   });
 }
 

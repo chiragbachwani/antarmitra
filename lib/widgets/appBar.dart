@@ -35,11 +35,11 @@ buildAppBar({
               return CircularProgressIndicator();
             } else {
               var data = snapshot.data;
-              var name = data['name'];
-              var email = data['email'];
-              var userType = data['type'];
+              var name = data['name'] ?? '';
+              var email = data['email'] ?? '';
+              var userType = data['type'] ?? '';
 
-              int points = data['points'] == null ? 0 : data['points'];
+              int points = data['points'] ?? 0;
               userController.points.value = points;
               userController.userName.value = name;
               userController.userEmail.value = email;
@@ -48,7 +48,7 @@ buildAppBar({
               return Row(
                 children: [
                   Text(
-                    '${userController.points.value}',
+                    '${userController.points.value ?? 0}',
                     style: TextStyle(
                       color: AppColor.fifth,
                       fontSize: 24,
