@@ -1,5 +1,6 @@
 // import 'package:antarmitra/screens/Homesceen.dart';
 import 'package:antarmitra/screens/community.dart';
+import 'package:antarmitra/screens/community_posts/comm_posts.dart';
 import 'package:antarmitra/screens/exercise.dart';
 import 'package:antarmitra/screens/meditation.dart';
 import 'package:antarmitra/screens/profile.dart';
@@ -21,7 +22,7 @@ class NavBar extends StatelessWidget {
     List<Widget> buildScreens() {
       return [
         Home(),
-        const Community(),
+        const CommunityPosts(),
         const DialogMeditation(),
         const Exercise(),
         const Profile()
