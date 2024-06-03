@@ -5,7 +5,7 @@ class Post {
   final String userId;
   final String text;
   final String imageUrl;
-  final List<String> likes;
+  // final List<String> likes;
   final List<Comment> comments;
   final DateTime datetime;
 
@@ -14,7 +14,7 @@ class Post {
     required this.userId,
     required this.text,
     required this.imageUrl,
-    required this.likes,
+    // required this.likes,
     required this.comments,
     required this.datetime,
   });
