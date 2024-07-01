@@ -1,8 +1,7 @@
 import 'package:antarmitra/screens/profile.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:image_picker/image_picker.dart';
-import 'dart:io';
 
 class AddPostScreen extends StatefulWidget {
   final VoidCallback? onPostAdded;
@@ -14,22 +13,13 @@ class AddPostScreen extends StatefulWidget {
 
 class _AddPostScreenState extends State<AddPostScreen> {
   final TextEditingController _textController = TextEditingController();
-  // File? _image;
-  // final ImagePicker _picker = ImagePicker();
-  bool _isLoading = false;
 
-  // Future<void> _pickImage() async {
-  //   final pickedFile = await _picker.pickImage(source: ImageSource.gallery);
-  //   setState(() {
-  //     if (pickedFile != null) {
-  //       _image = File(pickedFile.path);
-  //     }
-  //   });
-  // }
+  bool _isLoading = false;
+  var currentUser = FirebaseAuth.instance.currentUser!;
 
   Future<void> _addPost() async {
     if (_textController.text.isEmpty) {
-      VxToast.show(context, msg: "Certificate Not Uploaded!");
+      VxToast.show(context, msg: "You can not post empty thoughts, buddy!");
       return;
     }
 
@@ -38,20 +28,19 @@ class _AddPostScreenState extends State<AddPostScreen> {
     });
 
     try {
-      // String imageUrl = '';
-      // if (_image != null) {
-      //   // Upload image to Firestore or any storage service and get the URL
-      //   // Here we assume you have a method to upload the image and get its URL
-      //   imageUrl = await _uploadImageToStorage(_image!);
-      // }
+      DocumentSnapshot userDoc = await FirebaseFirestore.instance
+          .collection('Users')
+          .doc(currentUser.uid)
+          .get();
 
+      String name = userDoc['name'];
       await FirebaseFirestore.instance.collection('Posts').add({
-        'userId': '1', // or use actual user ID if available
+        'userId': currentUser.email,
+        'name': name,
         'text': _textController.text,
-
         'likes': [],
         'comments': [],
-        'datetime': FieldValue.serverTimestamp(),
+        'datetime': Timestamp.now(),
       });
 
       if (widget.onPostAdded != null) {
@@ -90,9 +79,10 @@ class _AddPostScreenState extends State<AddPostScreen> {
                 children: [
                   TextField(
                     controller: _textController,
-                    maxLines: 3,
+                    maxLines: 4,
                     decoration: const InputDecoration(
-                      hintText: 'What\'s on your mind?',
+                      hintText:
+                          'Share your thoughts and feelings with community',
                       border: OutlineInputBorder(),
                     ),
                   ),

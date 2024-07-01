@@ -277,16 +277,6 @@ class SignUpScreenState extends State<SignUpScreen> {
                                   .createUserWithEmailAndPassword(
                                       email: _emailTextController.text,
                                       password: _passwordTextController.text)
-                                  .then((value) => storeUserData(
-                                      email: _emailTextController.text,
-                                      password: _passwordTextController.text,
-                                      name: _userNameTextController.text,
-                                      type: _selectedValue == 1
-                                          ? 'Therapist'
-                                          : 'User',
-                                      certificate: downloadlink != ''
-                                          ? downloadlink
-                                          : ''))
                                   .then((value) {
                                   storeUserData(
                                     email: _emailTextController.text,
@@ -315,17 +305,6 @@ class SignUpScreenState extends State<SignUpScreen> {
                                           email: _emailTextController.text,
                                           password:
                                               _passwordTextController.text)
-                                      .then((value) => storeUserData(
-                                          email: _emailTextController.text,
-                                          password:
-                                              _passwordTextController.text,
-                                          name: _userNameTextController.text,
-                                          type: _selectedValue == 1
-                                              ? 'Therapist'
-                                              : 'User',
-                                          certificate: downloadlink != ''
-                                              ? downloadlink
-                                              : ''))
                                       .then((value) {
                                       storeUserData(
                                         email: _emailTextController.text,
