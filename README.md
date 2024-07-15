@@ -1,16 +1,5 @@
-# antarmitra
+ # AntarMitra - Meditation and SelfCare App  
+ 
+AntarMitra is a meditation and self-care app crafted with Flutter, Dart, Firebase, and GetX. It hosts a community feed where users find support from Therapists. It has integrated guided video meditations to facilitate users in establishing regular mindfulness routines. A dynamic reward system further encourages user engagement and commitment to their mental well-being journey.
 
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+<img src="./assets/antarmitra-banner.png" alt="" width="700">
