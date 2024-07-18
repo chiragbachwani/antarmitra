@@ -51,6 +51,9 @@ dependencies:
   image: ^4.0.17
   web_socket_channel: ^2.4.0
   dash_chat_2: ^0.0.20
+  flutter_riverpod: 
+  flutter_dotenv: ^5.1.0 
+  google_generative_ai: 
 
 dev_dependencies:
   flutter_test:
@@ -83,6 +86,7 @@ flutter:
     - assets/logos/
     - assets/images/
     - assets/fonts/
+    - .env
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

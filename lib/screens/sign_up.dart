@@ -27,18 +27,25 @@ class SignUpScreen extends StatefulWidget {
 }
 
 storeUserData({name, password, email, type, certificate}) async {
-  DocumentReference store = firestore.collection('Users').doc(currentuser!.uid);
+  try {
+    DocumentReference store =
+        firestore.collection('Users').doc(currentuser!.uid);
 
-  store.set({
-    'name': name,
-    'password': password,
-    'email': email,
-    'id': currentuser!.uid,
-    'type': type,
-    'image_url': '',
-    'certificate': certificate,
-    'points': 0
-  });
+    store.set({
+      'name': name,
+      'password': password,
+      'email': email,
+      'id': currentuser!.uid,
+      'type': type,
+      'image_url': '',
+      'certificate': certificate,
+      'points': 0
+    });
+
+    print("registered created successfully");
+  } catch (e) {
+    print(e);
+  }
 }
 
 // storeUserData(

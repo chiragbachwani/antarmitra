@@ -158,7 +158,7 @@ class _PostCardState extends State<PostCard> {
                 child: Text(widget.postText),
               ),
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Row(
                     children: [

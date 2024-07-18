@@ -1,4 +1,5 @@
 import 'package:antarmitra/controller/usercontroller.dart';
+import 'package:antarmitra/screens/gemini_chat/myHomePage.dart';
 import 'package:antarmitra/utils/app_color.dart';
 import 'package:antarmitra/utils/app_constants.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -61,6 +62,14 @@ buildAppBar({
                     height: 40,
                     width: 40,
                   ),
+                  IconButton(
+                      onPressed: () {
+                        Get.to(() => MyHomePage());
+                      },
+                      icon: Icon(
+                        Icons.chat,
+                        size: 28,
+                      )),
                   const SizedBox(width: 10),
                 ],
               );
