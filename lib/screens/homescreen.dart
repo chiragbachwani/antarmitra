@@ -1,13 +1,16 @@
 import 'package:antarmitra/controller/homecontroller.dart';
 import 'package:antarmitra/controller/usercontroller.dart';
 import 'package:antarmitra/firebase_const.dart';
-import 'package:antarmitra/routes/route_name.dart';
+// import 'package:antarmitra/routes/route_name.dart';
 import 'package:antarmitra/screens/community.dart';
 import 'package:antarmitra/screens/prayatnascreen.dart';
 import 'package:antarmitra/utils/app_color.dart';
-import 'package:antarmitra/utils/app_constants.dart';
+// import 'package:antarmitra/utils/app_constants.dart';
 import 'package:antarmitra/widgets/appBar.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:antarmitra/widgets/dailyStreaks.dart';
+import 'package:antarmitra/widgets/meditation_streak.dart';
+// import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -26,8 +29,50 @@ class Therapist {
       required this.image});
 }
 
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
   Home({super.key});
+
+  @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  late DailyStreakManager _streakManager;
+  int _currentStreak = 0;
+
+   @override
+  void initState() {
+    super.initState();
+    final user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      _streakManager = DailyStreakManager(user.uid);
+      _initializeStreak();
+    }
+  } 
+
+
+  Future<void> _initializeStreak() async {
+    await _streakManager.checkAndUpdateStreak();
+    _updateStreakDisplay();
+    
+    // Start a timer to check session duration every minute
+    Future.delayed(Duration(minutes: 1), _checkSessionDuration);
+  }
+
+  Future<void> _checkSessionDuration() async {
+    await _streakManager.checkSessionDuration();
+    _updateStreakDisplay();
+    
+    // Schedule the next check
+    Future.delayed(Duration(minutes: 1), _checkSessionDuration);
+  }
+
+  Future<void> _updateStreakDisplay() async {
+    final streak = await _streakManager.getCurrentStreak();
+    setState(() {
+      _currentStreak = streak;
+    });
+  }
 
   final List<Therapist> therapists = [
     Therapist(
@@ -48,28 +93,9 @@ class Home extends StatelessWidget {
     // Add more therapists as needed
   ];
 
-  // Future<void> getUserDetails() async {
-  //   DocumentSnapshot documentSnapshot;
-  //   try {
-  //     documentSnapshot = await FirebaseFirestore.instance
-  //         .collection('Users')
-  //         .doc(currentuser!.uid)
-  //         .get();
-
-  //     if (documentSnapshot.exists) {
-  //       print(documentSnapshot.data());
-  //       var data = documentSnapshot.data();
-  //     } else {
-  //       print('Document does not exist');
-  //     }
-  //   } catch (e) {
-  //     print('Error fetching document: $e');
-  //   }
-  // }
-
   @override
   Widget build(BuildContext context) {
-    var userController = Get.find<UserController>();
+    // var userController = Get.find<UserController>();
     return Scaffold(
         appBar: buildAppBar(),
         body: SingleChildScrollView(
@@ -80,45 +106,7 @@ class Home extends StatelessWidget {
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
-                      // const SizedBox(height: 20),
-                      // ignore: avoid_unnecessary_containers
-                      Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: AppColor.fifth,
-                          ),
-                          // color: AppColor.fifth,
-                          padding: const EdgeInsets.all(20),
-                          child: Column(
-                            children: [
-                              const Align(
-                                alignment: Alignment.centerLeft,
-                                child: Text('Daily Meditation Streak',
-                                    style: TextStyle(
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.bold)),
-                              ),
-                              const SizedBox(height: 30),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  buildDay("M", Icons.circle_outlined),
-                                  buildDay(
-                                      "T", Icons.check_circle_outline_outlined),
-                                  buildDay(
-                                      "W", Icons.check_circle_outline_outlined),
-                                  buildDay("T", Icons.circle_outlined),
-                                  buildDay("F", Icons.circle_outlined),
-                                  buildDay("S", Icons.circle_outlined),
-                                  buildDay("S", Icons.circle_outlined),
-                                ],
-                              ),
-                              const SizedBox(
-                                height: 20,
-                              ),
-                            ],
-                          )),
+                      MeditationStreakDisplay(userId: currentuser!.uid),
                       const SizedBox(height: 10),
                       const Divider(thickness: 1),
                       const SizedBox(height: 10),
@@ -217,7 +205,7 @@ class Home extends StatelessWidget {
                           ),
                           // color: AppColor.fifth,
                           padding: const EdgeInsets.all(20),
-                          child: const Row(
+                          child:  Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Align(
@@ -226,15 +214,11 @@ class Home extends StatelessWidget {
                                     style: TextStyle(
                                         fontSize: 16, color: AppColor.fifth)),
                               ),
-                              Text('14 Days ' '🔥',
+                              Text('$_currentStreak' ' 🔥',
                                   style: TextStyle(
-                                      fontSize: 16,
+                                      fontSize: 26,
                                       color: AppColor.fifth,
                                       fontWeight: FontWeight.bold)),
-                              // SizedBox(height: 30),
-                              // SizedBox(
-                              //   height: 20,
-                              // ),
                             ],
                           )),
                     ],
