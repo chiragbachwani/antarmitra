@@ -17,7 +17,7 @@ ThemeData lightMode = ThemeData(
     shadowColor: Colors.white,
   ),
   colorScheme: const ColorScheme.light(
-    background: Color(0xffffffff),  // White background
+    surface: Color(0xffffffff),  // White background
     primary: Color(0xff3369FF),     // Primary blue
     secondary: Color(0xffEEEEEE),   // Light secondary color for outlines, dividers
   ),
@@ -46,7 +46,7 @@ ThemeData darkMode = ThemeData(
     shadowColor: Color(0xff625b5b),  // Subtle shadow for app bar
   ),
   colorScheme: const ColorScheme.dark(
-    background: Color(0xff121212),    // Dark gray background
+    surface: Color(0xff121212),    // Dark gray background
     primary: Color(0xff2A57CC),       // Subdued blue for primary color
     secondary: Color(0xffA0A0A0),     // Soft light gray for secondary elements
   ),

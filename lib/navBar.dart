@@ -1,5 +1,4 @@
-// import 'package:antarmitra/screens/Homesceen.dart';
-import 'package:antarmitra/screens/community.dart';
+import 'package:flutter/material.dart';
 import 'package:antarmitra/screens/community_posts/comm_posts.dart';
 import 'package:antarmitra/screens/exercise.dart';
 import 'package:antarmitra/screens/meditation.dart';
@@ -7,104 +6,85 @@ import 'package:antarmitra/screens/profile.dart';
 import 'package:antarmitra/utils/app_color.dart';
 import 'package:antarmitra/screens/mediationDialog.dart';
 import 'package:antarmitra/screens/homescreen.dart';
-import 'package:flutter/material.dart';
-import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
+class NavBar extends StatefulWidget {
+  const NavBar({Key? key}) : super(key: key);
 
-class NavBar extends StatelessWidget {
-  
-  const NavBar({super.key});
+  @override
+  _NavBarState createState() => _NavBarState();
+}
+
+class _NavBarState extends State<NavBar> {
+  int _selectedIndex = 0;
+
+  final List<Widget> _screens = [
+    Home(),
+    const CommunityPosts(),
+    const DialogMeditation(),
+    const Exercise(),
+    const Profile()
+  ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    PersistentTabController controller;
-
-    controller = PersistentTabController(initialIndex: 0);
-
-    List<Widget> buildScreens() {
-      return [
-        Home(),
-        const CommunityPosts(),
-        const DialogMeditation(),
-        const Exercise(),
-        const Profile()
-      ];
-    }
-
-    List<PersistentBottomNavBarItem> navBarsItems() {
-      return [
-        PersistentBottomNavBarItem(
-          icon: const Icon(Icons.home),
-          inactiveColorPrimary: AppColor.fifth,
-          activeColorPrimary: AppColor.sixth,
-          title: ("Home"),
-        ),
-        PersistentBottomNavBarItem(
-          icon: const Icon(Icons.people),
-          title: ("Community"),
-          inactiveColorPrimary: AppColor.fifth,
-          activeColorPrimary: AppColor.sixth,
-        ),
-        PersistentBottomNavBarItem(
-          icon: const Icon(Icons.video_camera_front_rounded),
-          title: ("Meditation"),
-          activeColorSecondary: AppColor.fifth,
-          inactiveColorSecondary: AppColor.sixth,
-          inactiveColorPrimary: AppColor.fifth,
-          activeColorPrimary: AppColor.sixth,
-        ),
-        PersistentBottomNavBarItem(
-          icon: const Icon(Icons.sports_gymnastics),
-          title: ("Exercise"),
-          inactiveColorPrimary: AppColor.fifth,
-          activeColorPrimary: AppColor.sixth,
-          // activeColorPrimary: CupertinoColors.activeBlue,
-          // inactiveColorPrimary: CupertinoColors.systemGrey,
-        ),
-        PersistentBottomNavBarItem(
-          icon: const Icon(Icons.person),
-          title: ("Profile"),
-          inactiveColorPrimary: AppColor.fifth,
-          activeColorPrimary: AppColor.sixth,
-          // activeColorPrimary: CupertinoColors.activeBlue,
-          // inactiveColorPrimary: CupertinoColors.systemGrey,
-        ),
-      ];
-    }
-
-    return PersistentTabView(
-      context,
-      controller: controller,
-      screens: buildScreens(),
-      items: navBarsItems(),
-      confineInSafeArea: true,
-
-      backgroundColor: AppColor.first, // Default is Colors.white.
-      handleAndroidBackButtonPress: true, // Default is true.
-      resizeToAvoidBottomInset:
-          true, // This needs to be true if you want to move up the screen when keyboard appears. Default is true.
-      stateManagement: true, // Default is true.
-      hideNavigationBarWhenKeyboardShows:
-          true, // Recommended to set 'resizeToAvoidBottomInset' as true while using this argument. Default is true.
-      decoration: NavBarDecoration(
-        borderRadius: BorderRadius.circular(10.0),
-        colorBehindNavBar: AppColor.first,
+    return Scaffold(
+      body: IndexedStack(
+        index: _selectedIndex,
+        children: _screens,
       ),
-      navBarHeight: 70,
-      popAllScreensOnTapOfSelectedTab: true,
-      popActionScreens: PopActionScreensType.all,
-      itemAnimationProperties: const ItemAnimationProperties(
-        // Navigation Bar's items animation properties.
-        duration: Duration(milliseconds: 200),
-        curve: Curves.ease,
+      bottomNavigationBar: Container(
+        decoration: BoxDecoration(
+          borderRadius: const BorderRadius.only(
+            topRight: Radius.circular(10),
+            topLeft: Radius.circular(10),
+          ),
+          boxShadow: [
+            BoxShadow(color: Colors.black38, spreadRadius: 0, blurRadius: 10),
+          ],
+        ),
+        child: ClipRRect(
+          borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(10.0),
+            topRight: Radius.circular(10.0),
+          ),
+          child: BottomNavigationBar(
+            backgroundColor: AppColor.first,
+            items: const <BottomNavigationBarItem>[
+              BottomNavigationBarItem(
+                icon: Icon(Icons.home),
+                label: 'Home',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.people),
+                label: 'Community',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.video_camera_front_rounded),
+                label: 'Meditation',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.sports_gymnastics),
+                label: 'Exercise',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.person),
+                label: 'Profile',
+              ),
+            ],
+            currentIndex: _selectedIndex,
+            selectedItemColor: AppColor.sixth,
+            unselectedItemColor: AppColor.fifth,
+            onTap: _onItemTapped,
+            type: BottomNavigationBarType.fixed,
+          ),
+        ),
       ),
-      screenTransitionAnimation: const ScreenTransitionAnimation(
-        animateTabTransition: true,
-        curve: Curves.ease,
-        duration: Duration(milliseconds: 500),
-      ),
-      navBarStyle:
-          NavBarStyle.style15, // Choose the nav bar style with this property.
     );
   }
 }
